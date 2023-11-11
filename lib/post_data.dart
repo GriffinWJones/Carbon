@@ -1,4 +1,4 @@
-import 'package:inrixecocoin/user_data.dart';
+import 'package:inrixecocoin2/user_data.dart';
 
 class PostData {
   String image = "";

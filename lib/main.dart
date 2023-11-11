@@ -1,7 +1,7 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:inrixecocoin/test_widget.dart';
+import 'package:inrixecocoin2/test_widget.dart';
 import 'home.dart';
 import 'test_data.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inrixecocoin/user_data.dart';
+import 'package:inrixecocoin2/user_data.dart';
 import 'user_data.dart';
 
 class ProfilePicture extends StatelessWidget {
