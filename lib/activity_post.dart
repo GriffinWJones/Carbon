@@ -24,13 +24,30 @@ class ActivityPost extends StatelessWidget {
                   children: [
                     ProfilePicture(user: postData.userData),
                     SizedBox(width: 10.0),
-                    Text(
-                      postData.userData.displayName,
-                      style: TextStyle(
-                        fontFamily: 'Monterrat',
-                        fontSize: 16.0,
-                        color: ecoColors.darkColor,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          postData.userData.displayName,
+                          style: TextStyle(
+                            fontFamily: 'Monterrat',
+                            fontSize: 16.0,
+                            color: ecoColors.darkColor,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            '@${postData.userData.handle}',
+                            style: TextStyle(
+                              fontFamily: 'Monterrat',
+                              fontWeight: FontWeight.w200,
+                              fontSize: 12.0,
+                              color: ecoColors.darkColor,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                     Spacer(),
                     Align(
@@ -38,6 +55,7 @@ class ActivityPost extends StatelessWidget {
                         postData.location,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w100,
                           color: ecoColors.darkColor,
                         ),
                       ),

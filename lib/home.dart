@@ -52,13 +52,13 @@ class _HomeState extends State<Home> {
             ),
           ),
           ActivityFeed(),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           )
         ],
       ),
       backgroundColor: ecoColors.lightColor,
-      bottomNavigationBar: mainNavigationBar,
+      bottomNavigationBar: const MainBottomNavBar(),
     );
   }
 }

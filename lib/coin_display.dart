@@ -28,7 +28,7 @@ class CoinDisplay extends StatelessWidget {
           ),
           const SizedBox(width: 8.0), // Space between the image and text
           Text(
-            '100,000', // Replace with your desired text
+            user.coinCount.toString(), // Replace with your desired text
             style: TextStyle(
                 color: ecoColors.lighterColor), // Set your desired text style
           ),
