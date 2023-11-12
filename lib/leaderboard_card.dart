@@ -11,18 +11,18 @@ Widget leaderboardCard(UserData userData) {
     color: ecoColors.lighterColor,
     child: Row(
       children: [
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         ProfilePicture(user: userData), //profile picture
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Text(
           userData.displayName,
-          style: TextStyle(fontSize: 15, fontFamily: 'Montserrat'),
+          style: const TextStyle(fontSize: 15, fontFamily: 'Montserrat'),
         ),
-        SizedBox(width: 10), //rank position
+        const SizedBox(width: 10), //rank position
 
         Expanded(
-            child: Text(userData.handle,
-                style: TextStyle(
+            child: Text("@" + userData.handle,
+                style: const TextStyle(
                     fontSize: 10,
                     fontFamily: 'Montserrat',
                     color: Colors.black87),
