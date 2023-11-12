@@ -5,18 +5,6 @@ import 'package:inrixecocoin2/user_data.dart';
 import 'test_data.dart';
 import "user_data.dart";
 
-// class LeaderboardCard extends StatelessWidget {
-//   final UserData user;
-//   const LeaderboardCard({required this.user});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Card(
-      
-//     );
-//   }
-// }
-
 Widget leaderboardCard(UserData userData) {
   return Card(
     child: Row(
