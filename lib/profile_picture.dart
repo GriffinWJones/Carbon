@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inrixecocoin2/user_data.dart';
-import 'user_data.dart';
 
 class ProfilePicture extends StatelessWidget {
   final UserData user;
@@ -13,8 +12,8 @@ class ProfilePicture extends StatelessWidget {
         child: ClipOval(
           child: Image.network(
             "https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_Kitten_01.jpg",
-            width: 100,
-            height: 100,
+            width: 50,
+            height: 50,
           ),
         ));
   }

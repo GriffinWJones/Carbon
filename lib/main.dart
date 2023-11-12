@@ -5,7 +5,7 @@ import 'home.dart';
 import 'test_data.dart';
 
 void main() => runApp(MaterialApp(
-      initialRoute: '/leaderboard',
+      initialRoute: '/home',
       routes: {
         '/': (context) => LeaderboardTab(),
         '/home': (context) => Home(user: testUsers[0]),

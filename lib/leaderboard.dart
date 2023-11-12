@@ -1,56 +1,78 @@
 import 'package:flutter/material.dart';
-
-class ExampleCard extends StatelessWidget {
-  int rank = 0;
-  String username = "";
-  String image = "";
-
-  ExampleCard(
-      {required this.rank, required this.username, required this.image});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
+import 'package:inrixecocoin2/user_data.dart';
+import 'leaderboard_card.dart';
+import 'test_data.dart';
+import 'eco_colors.dart';
 
 class LeaderboardTab extends StatelessWidget {
   const LeaderboardTab({Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        backgroundColor: ecoColors.mainColor,
+        title: Text(
           "Leaderboard",
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(
+              color: ecoColors.darkColor,
+              fontSize: 40,
+              fontFamily: 'Montserrat'),
         ),
         centerTitle: true,
       ),
+      backgroundColor: ecoColors.lightColor,
       body: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.star),
-                label: Text("Button 1"),
-              ),
-              ElevatedButton.icon(
+              Expanded(
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: ecoColors.mainShadow),
                   onPressed: () {},
-                  icon: Icon(Icons.star),
-                  label: Text("Button 2"))
+                  icon: Icon(Icons.account_circle, color: ecoColors.darkColor),
+                  label: Text("Local",
+                      style: TextStyle(
+                          color: ecoColors.darkColor,
+                          fontSize: 20,
+                          fontFamily: 'Montserrat')),
+                ),
+              ),
+              Expanded(
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: ecoColors.mainShadow),
+                  onPressed: () {},
+                  icon: Icon(Icons.airplanemode_active,
+                      color: ecoColors.darkColor),
+                  label: Text(
+                    "Global",
+                    style: TextStyle(
+                      color: ecoColors.darkColor,
+                      fontSize: 20,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
-          ListView.builder(
-              itemCount: leaderBoardList.length,
+          Expanded(
+            child: ListView.builder(
+              itemCount: testUsers.length,
               itemBuilder: (context, index) {
-                return ExampleCard(rank: 1, username: "User1", image: "image1");
-              })
+                return leaderboardCard(testUsers[index]);
+              },
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
-List<ExampleCard> leaderBoardList = [];
+/*List<UserData> leaderBoardList = [
+  UserData(image: "dog.url", handle: "balls", displayName: "Jonathan Balls")
+];*/
