@@ -34,6 +34,11 @@ class _LoginPageState extends State<LoginPage> {
               height: 40,
             ),
             TextField(
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 20,
+                color: ecoColors.lighterColor,
+              ),
               controller: usernameController,
               decoration: InputDecoration(
                   labelText: 'Username',
@@ -44,6 +49,11 @@ class _LoginPageState extends State<LoginPage> {
                   )),
             ),
             TextField(
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 20,
+                color: ecoColors.lighterColor,
+              ),
               controller: passwordController,
               decoration: InputDecoration(
                   labelText: 'Password',

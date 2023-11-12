@@ -30,6 +30,11 @@ class CreateAccountPage extends StatelessWidget {
               height: 40,
             ),
             TextField(
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 20,
+                color: ecoColors.lighterColor,
+              ),
               controller: displayNameController,
               decoration: InputDecoration(
                   labelText: 'Display Name',
@@ -40,6 +45,11 @@ class CreateAccountPage extends StatelessWidget {
                   )),
             ),
             TextField(
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 20,
+                color: ecoColors.lighterColor,
+              ),
               controller: usernameController,
               decoration: InputDecoration(
                   labelText: 'Username',
@@ -50,6 +60,11 @@ class CreateAccountPage extends StatelessWidget {
                   )),
             ),
             TextField(
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 20,
+                color: ecoColors.lighterColor,
+              ),
               controller: passwordController,
               decoration: InputDecoration(
                   labelText: 'Password',
@@ -82,7 +97,8 @@ class CreateAccountPage extends StatelessWidget {
 
                 User newUser = User(
                     username: username,
-                    image: "",
+                    image:
+                        "https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg ",
                     friends: "",
                     posts: "",
                     coins: 0,
@@ -91,7 +107,7 @@ class CreateAccountPage extends StatelessWidget {
 
                 try {
                   await User.insert(newUser);
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, '/login');
                 } catch (e) {
                   showDialog(
                     context: context,

@@ -10,9 +10,13 @@ import 'profile_page.dart';
 import 'login_page.dart';
 import 'create_account.dart';
 import 'current_user.dart';
+import 'map_display.dart';
+import 'activity_in_progress.dart';
+import 'carpool.dart';
 
 void main() {
   UserData currentUser = CURRENT_USER;
+
   runApp(
     MaterialApp(
       initialRoute: '/',
@@ -41,9 +45,17 @@ void main() {
           currentUser = CURRENT_USER;
           return ProfilePage(user: currentUser);
         },
+        '/activityInProgress': (context) {
+          currentUser = CURRENT_USER;
+          return ActivityInProgressPage(user: currentUser);
+        },
+        '/carpool': (context) {
+          currentUser = CURRENT_USER;
+          return Carpool();
+        },
         '/activityStart': (context) {
           currentUser = CURRENT_USER;
-          return ActivityStartPage();
+          return ActivityStartPage(user: currentUser);
         },
         '/leaderboard': (context) {
           currentUser = CURRENT_USER;

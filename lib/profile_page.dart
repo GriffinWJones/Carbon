@@ -9,13 +9,27 @@ import 'test_data.dart';
 import 'eco_colors.dart';
 import 'user.dart';
 
-class ProfilePage extends StatelessWidget {
-  final UserData user;
+class ProfilePage extends StatefulWidget {
+  UserData user;
   ProfilePage({required this.user});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final TextEditingController addFriendController = TextEditingController();
+
+  void sS(UserData d) {
+    setState(() {
+      widget.user = d;
+      print(widget.user.friends);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String friendsString = user.friends.replaceAll(RegExp(r'[{}]'), '');
+    String friendsString = widget.user.friends.replaceAll(RegExp(r'[{}]'), '');
     List<String> friends = friendsString
         .split(',')
         .where((username) => username.isNotEmpty)
@@ -28,19 +42,19 @@ class ProfilePage extends StatelessWidget {
               color: ecoColors.mainShadow,
             ),
             child: Column(children: [
-              const SizedBox(height: 100),
+              const SizedBox(height: 50),
               Center(
-                child: ProfilePicture(user: user, size: 120),
+                child: ProfilePicture(user: widget.user, size: 120),
               ),
               // ElevatedButton(
               //     onPressed: () {
               //       makeFriend(user.handle, "j_money");
               //     },
               //     child: Text("add")),
-              CoinDisplay(user: user),
+              CoinDisplay(user: widget.user),
               const SizedBox(height: 10),
               Center(
-                  child: Text(user.displayName,
+                  child: Text(widget.user.displayName,
                       style: TextStyle(
                         color: ecoColors.lighterColor,
                         fontSize: 30,
@@ -48,7 +62,7 @@ class ProfilePage extends StatelessWidget {
                       ))),
               const Center(child: SizedBox(height: 10)),
               Center(
-                  child: Text('@${user.handle}',
+                  child: Text('@${widget.user.handle}',
                       style: TextStyle(
                         color: ecoColors.lighterColor,
                         fontSize: 20,
@@ -62,7 +76,7 @@ class ProfilePage extends StatelessWidget {
                   //border: Border.all(color: Colors.black, width: 1.0),
                   color: ecoColors.lightColor,
                 ),
-                height: 230,
+                height: 330,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -93,7 +107,7 @@ class ProfilePage extends StatelessWidget {
                   //border: Border.all(color: Colors.black, width: 1.0),
                   color: ecoColors.lightColor,
                 ),
-                height: 220,
+                height: 130,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -116,23 +130,106 @@ class ProfilePage extends StatelessWidget {
             ]),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: ecoColors.mainColor,
+          onPressed: () {
+            _showPopup(context);
+          },
+          child: Icon(Icons.add),
+        ),
         bottomNavigationBar: const MainBottomNavBar());
+  }
+
+  void _showPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: ecoColors.darkColor,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Add Friend',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 25,
+                  color: ecoColors.lighterColor,
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.close),
+                color: ecoColors.lighterColor,
+                onPressed: () {
+                  Navigator.pop(context); // Close the popup
+                },
+              ),
+            ],
+          ),
+          content: ConstrainedBox(
+            constraints:
+                BoxConstraints(maxHeight: 200.0), // Set your desired max height
+            child: Column(
+              children: [
+                TextField(
+                  controller: addFriendController,
+                  style: TextStyle(color: ecoColors.lighterColor),
+                  decoration: InputDecoration(
+                    labelText: 'Enter text',
+                    labelStyle: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 20,
+                      color: ecoColors.lightColor,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      ecoColors.mainColor,
+                    ), // Set your desired color
+                  ),
+                  onPressed: () {
+                    makeFriend(
+                        widget.user.handle, addFriendController.text, sS);
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'ADD',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 20,
+                      color: ecoColors.lightColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
-class FriendCardCreator extends StatelessWidget {
+class FriendCardCreator extends StatefulWidget {
   final Future<UserData> friendData;
   FriendCardCreator({required this.friendData});
 
   @override
+  State<FriendCardCreator> createState() => _FriendCardCreatorState();
+}
+
+class _FriendCardCreatorState extends State<FriendCardCreator> {
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<UserData>(
-      future: friendData,
+      future: widget.friendData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator(); // Or any loading indicator
         } else if (snapshot.hasError) {
-          print("2");
           return Text('Error: ${snapshot.error}');
         } else {
           UserData result = snapshot.data!;
@@ -163,7 +260,8 @@ Future<UserData> GetUserDataObject(String username) async {
   }
 }
 
-Future<void> makeFriend(String username, String friendUsername) async {
+Future<void> makeFriend(
+    String username, String friendUsername, Function sS) async {
   try {
     final response1 = await DatabaseHelper.client
         .from('user_table')
@@ -199,12 +297,17 @@ Future<void> makeFriend(String username, String friendUsername) async {
         // Update the friend's friends list
         await DatabaseHelper.client.from('user_table').update(
             {'friends': updatedFriends2}).eq('username', friendUsername);
+
+        UserData newUser = await GetUserDataObject(username);
+
+        sS(newUser);
       }
     } else {
-      print("Response is null");
+      throw Exception('User not found for username: $username');
     }
   } catch (e) {
     print("Error: $e");
+    throw Exception('User not found for username: $username');
     // Handle the error appropriately
   }
 }

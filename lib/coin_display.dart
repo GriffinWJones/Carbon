@@ -4,7 +4,8 @@ import 'eco_colors.dart';
 
 class CoinDisplay extends StatelessWidget {
   final UserData user;
-  CoinDisplay({required this.user});
+  final double size;
+  CoinDisplay({required this.user, this.size = 15});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,8 @@ class CoinDisplay extends StatelessWidget {
           ClipOval(
             child: Image.network(
               'https://t3.ftcdn.net/jpg/00/41/77/26/360_F_41772692_XyDHzeGLBCcl7q1MR0mMrXUNjiOwQT6o.jpg', // Replace with your image URL or asset
-              width: 20.0, // Set your desired width
-              height: 20.0, // Set your desired height
+              width: size, // Set your desired width
+              height: size, // Set your desired height
               fit: BoxFit.cover, // Adjust the fit as needed
             ),
           ),
@@ -30,7 +31,9 @@ class CoinDisplay extends StatelessWidget {
           Text(
             user.coinCount.toString(), // Replace with your desired text
             style: TextStyle(
-                color: ecoColors.lighterColor), // Set your desired text style
+              color: ecoColors.lighterColor,
+              fontSize: 20,
+            ), // Set your desired text style
           ),
         ],
       ),

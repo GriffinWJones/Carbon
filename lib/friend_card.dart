@@ -6,10 +6,15 @@ import 'test_data.dart';
 import "user_data.dart";
 import 'eco_colors.dart';
 
-class FriendCard extends StatelessWidget {
+class FriendCard extends StatefulWidget {
   final UserData user;
   const FriendCard({required this.user});
 
+  @override
+  State<FriendCard> createState() => _FriendCardState();
+}
+
+class _FriendCardState extends State<FriendCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,12 +27,12 @@ class FriendCard extends StatelessWidget {
           color: ecoColors.lighterColor,
           child: Row(
             children: [
-              ProfilePicture(user: user, size: 40), //profile picture
+              ProfilePicture(user: widget.user, size: 40), //profile picture
               const SizedBox(width: 10),
-              const Expanded(
-                  child: Text("My Friend :)",
+              Expanded(
+                  child: Text(widget.user.displayName,
                       overflow: TextOverflow.ellipsis, maxLines: 1)), //username
-              CoinDisplay(user: user), //coint count
+              CoinDisplay(user: widget.user), //coint count
             ],
           ),
         ));
