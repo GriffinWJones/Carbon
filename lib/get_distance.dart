@@ -17,12 +17,12 @@ totalDistanceToCoinsEarned(int totalDistance) {
 }
 
 Future<LatLng> getCurrentLocation() async {
+  getLocationPermissions();
   Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   return LatLng(position.latitude, position.longitude);
 }
 
 Future<double> getTotalDistance({LatLng? WP_1, LatLng? WP_2}) async {
-  getLocationPermissions();
   String route = await findRoute(
       WP_1_: WP_1 ?? await getCurrentLocation(),
       WP_2_: WP_2 ?? await getCurrentLocation(),

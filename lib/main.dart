@@ -15,19 +15,24 @@
 
 
 import 'package:flutter/material.dart';
-import 'get_distance.dart';
+import 'map_display.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Text((await getTotalDistance()).toString()),
-      ),
-    )
-  );
+  
+  runApp(MaterialApp(home: MapScreen()));
+  
+  //WidgetsFlutterBinding.ensureInitialized();
+
+
+  // runApp(
+  //   MaterialApp(
+  //     home: Scaffold(
+  //       appBar: AppBar(),
+  //       body: Text((await getTotalDistance()).toString()),
+  //     ),
+  //   )
+  // );
 }
 
 
