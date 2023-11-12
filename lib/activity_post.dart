@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inrixecocoin/post_data.dart';
+import 'package:inrixecocoin2/post_data.dart';
 
 class ActivityPost extends StatelessWidget {
   final PostData postData;
@@ -19,3 +19,5 @@ class ActivityPost extends StatelessWidget {
     );
   }
 }
+
+//Evan
