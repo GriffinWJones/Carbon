@@ -1,3 +1,5 @@
+# Carbon
+
 ## What inspired us
 We wanted to create an innovative product that has the capability of amassing huge amounts of attention, as well as contributing towards a better environment and implementing INRIX API. We were inspired by Strava's system of an activity feed that displays activity posts from your friends, as well as yourself.
 
