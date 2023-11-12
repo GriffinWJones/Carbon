@@ -4,7 +4,7 @@ import 'user_data.dart';
 
 class ProfilePicture extends StatelessWidget {
   final UserData user;
-  ProfilePicture({required this.user});
+  const ProfilePicture({required this.user});
 
   @override
   Widget build(BuildContext context) {

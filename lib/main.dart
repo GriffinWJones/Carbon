@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:inrixecocoin2/test_widget.dart';
 import 'home.dart';
