@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'eco_colors.dart';
 
 /*
 What you need in the State<NAME_OF_STATEFUL_WIDGET>, uncomment the currentIndex and onTop when done
@@ -13,30 +14,35 @@ What you need in the State<NAME_OF_STATEFUL_WIDGET>, uncomment the currentIndex 
 */
 
 BottomNavigationBar mainNavigationBar = BottomNavigationBar(
-  items: const [
+  items: [
     BottomNavigationBarItem(
-      icon: Icon(Icons.home),
+      icon: const Icon(Icons.home),
       label: 'Home',
+      backgroundColor: ecoColors.lighterColor,
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.bus_alert),
+      icon: const Icon(Icons.bus_alert),
       label: 'Carpool',
+      backgroundColor: ecoColors.lighterColor,
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.add),
+      icon: const Icon(Icons.add),
       label: 'Activity',
+      backgroundColor: ecoColors.lighterColor,
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.trending_up),
+      icon: const Icon(Icons.trending_up),
       label: 'Leaderboard',
+      backgroundColor: ecoColors.lighterColor,
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.person),
+      icon: const Icon(Icons.person),
       label: 'Profile',
+      backgroundColor: ecoColors.lighterColor,
     ),
   ],
   // currentIndex: _selectedIndex,
   // onTap: _updateIndex,
-  selectedItemColor: const Color.fromARGB(255, 36, 98, 39),
-  unselectedItemColor: Colors.green,
+  selectedItemColor: ecoColors.mainShadow,
+  unselectedItemColor: ecoColors.mainColor,
 );
